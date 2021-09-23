@@ -262,6 +262,8 @@ class File(PolymorphicModel, mixins.IconsMixin):
             return False
         elif user.is_superuser:
             return True
+        elif filer_settings.FILER_ALLOW_ALL_STAFF_ACCESS and user.is_staff:
+             return True
         elif user == self.owner:
             return True
         elif self.folder:
